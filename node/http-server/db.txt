@@ -1,0 +1,5 @@
+name=zhangsan&age=20name=zhangsan&age=20name=zhangsan&age=20name=zhangsan&age=20{
+    "name": "zhangsan",
+    "age": 20,
+    "sex": "man"
+}
