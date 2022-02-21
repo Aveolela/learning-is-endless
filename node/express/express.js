@@ -1,6 +1,6 @@
 // 用于继承其它对象的属性和属性描述符。
 const mixin = require('merge-descriptors');
-const proto = require('./application.js');
+const application = require('./application.js');
 
 function createApplication() {
   // 该方法其实就是createServer的回调，服务器的入口
@@ -9,8 +9,8 @@ function createApplication() {
     app.handle(req, res);
   }
 
-  // 将proto上的属性赋值给app
-  mixin(app, proto, false);
+  // 将proto上的方法赋值给app，成为app的静态方法
+  mixin(app, application, false);
 
   return app;
 }

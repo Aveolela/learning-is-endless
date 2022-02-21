@@ -17,8 +17,33 @@ const proto = module.exports = function () {
   // stack是用来存储layer的
   router.stack = [];
 
+  // 此处 return router 代替了 new 时的 return {...}
+  // 构造函数return的值非基本类型时，会时new操作符无效
   return router;
 };
+
+// router的数据结构如下：
+// const router = {
+//   stack: [
+//     // 里面很多layer
+//     {
+//       path: '/api/users',
+//       route: {
+//         stack: [
+//           // 里面存了多个method和回调函数
+//           {
+//             method: 'get',
+//             handle: function1
+//           },
+//           {
+//             method: 'post',
+//             handle: function2
+//           }
+//         ]
+//       }
+//     }
+//   ]
+// }
 
 proto.route = function route(path) {
   const route = new Route();
@@ -52,7 +77,7 @@ proto.handle = function handle(req, res, done) {
     var route;
 
     while (match !== true && idx < stack.length) {
-      layer = stack[idx++]; // 注意这里先执行 layer = stack[idx]; 再执行idx++;
+      layer = stack[idx++];
       match = layer.match(path); // 调用layer.match来检测当前路径是否匹配
       route = layer.route;
 
