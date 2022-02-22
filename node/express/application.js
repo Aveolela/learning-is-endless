@@ -39,6 +39,8 @@ methods.forEach(method => {
     this.lazyrouter();
 
     const route = this._router.route(path);
+    // 此处的arguments是{'/', (req, res) => {...}}
+    // route.get.apply({methods: {}, stack: []}, (req, res) => {...})
     route[method].apply(route, Array.prototype.slice.call(arguments, 1));
     return this;
   }

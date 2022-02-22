@@ -14,7 +14,7 @@ const proto = module.exports = function () {
   // 将proto设置为router的原型
   setprototypeof(router, proto);
 
-  // stack是用来存储layer的
+  // stack是用来存储layer的，可以说stack是整个路由的核心
   router.stack = [];
 
   // 此处 return router 代替了 new 时的 return {...}
@@ -50,9 +50,22 @@ proto.route = function route(path) {
   const layer = new Layer(path, route.dispatch.bind(route));
 
   layer.route = route;
+  // 这是一个layer
+  //  {
+  //     handle: f(),
+  //     method: '',
+  //     path: '/',
 
+  //     regexp: /^\\/ ? $ / i,
+  //     route: {
+  //       methods: { },
+  //       stack: []
+  //     }
+  //  }
+  // 将layer添加到stack中
   this.stack.push(layer);
 
+  // 此时的route为{methods: {}, stack: []}
   return route;
 }
 
@@ -81,7 +94,7 @@ proto.handle = function handle(req, res, done) {
       match = layer.match(path); // 调用layer.match来检测当前路径是否匹配
       route = layer.route;
 
-      // 没匹配上，跳出当次循环
+      // layer没匹配上，跳出当次循环
       if (match !== true) {
         continue;
       }
