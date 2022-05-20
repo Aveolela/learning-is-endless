@@ -18,14 +18,14 @@ pipeline {
     }
     stage('打印信息') {
       steps {
-        echo 'env.JOB_NAME: ${env.JOB_NAME}'
-        echo 'env.isDebug: ${env.isDebug}'
-        echo 'env.email: ${env.email}'
-        echo 'env.custom: "${env.custom}"'
-        echo 'env.WORKSPACE:' env.WORKSPACE
-        echo 'env.JENKINS_URL:' env.JENKINS_URL
-        echo 'env.BUILD_URL:' env.BUILD_URL
-        echo 'env.NODE_NAME:' env.NODE_NAME
+        echo env.JOB_NAME
+        echo env.isDebug
+        echo env.email
+        echo env.custom
+        echo  env.WORKSPACE
+        echo  env.JENKINS_URL
+        echo env.BUILD_URL
+        echo  env.NODE_NAME
       }
     }
   }
