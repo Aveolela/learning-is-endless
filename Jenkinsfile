@@ -18,7 +18,7 @@ pipeline {
     }
     stage('打印信息') {
       steps {
-        echo env
+        echo env.JOB_NAME
       }
     }
   }
