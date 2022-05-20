@@ -16,5 +16,10 @@ pipeline {
         echo 'publish'
       }
     }
+    stage('打印信息') {
+      steps {
+        echo env
+      }
+    }
   }
 }
