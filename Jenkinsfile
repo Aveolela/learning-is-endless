@@ -18,8 +18,7 @@ pipeline {
     }
     stage('打印信息') {
       steps {
-        sh 'ls ${env.WORKSPACE}'
-        echo env.JOB_NAME
+        echo "env.JOB_NAME ${env.JOB_NAME} "
         echo env.isDebug
         echo env.email
         echo env.custom
