@@ -1,7 +1,7 @@
 pipeline {
   agent any
   parameters { 
-    boolean(name: 'isDebug', defaultValue: false, description: '是否开启debug模式')
+    booleanParam(name: 'isDebug', defaultValue: false, description: '是否开启debug模式')
     string(name: 'email', defaultValue: 'xxx@qq.com', description: '邮箱地址')
     choice(name: 'custom', choices: ['inland', 'oversea', 'dingding', 'cvtouch'], description: '配置化')
   }
