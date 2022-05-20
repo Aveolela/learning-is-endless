@@ -18,6 +18,7 @@ pipeline {
     }
     stage('打印信息') {
       steps {
+        sh 'cat ${env.WORKSPACE}'
         echo env.JOB_NAME
         echo env.isDebug
         echo env.email
